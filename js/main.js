@@ -18,6 +18,17 @@ alert(`Ricorda questi cinque numeri: ${numeriCasuali}.
 Fra 30 secondi ti verrà chiesto di scriverli uno per volta.`);
 
 // faccio partire un timer per 30 secondi e poi chiedo all'utente di scrivere i numeri esposti prima
+var secondi = 30;
+var timer = setInterval(function() {
+    secondi--
+    document.getElementById("timer").innerHTML = secondi;
+    if (secondi == 1) {
+        document.getElementById("timer").innerHTML = "";
+        clearInterval(timer);
+}
+}, 1000);
+
+
 var numeriInseriti = [];
 var numeroIndovinati = 0;
 var indovinati = [];
