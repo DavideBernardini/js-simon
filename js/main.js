@@ -18,47 +18,47 @@ alert(`Ricorda questi cinque numeri: ${numeriCasuali}.
 Fra 30 secondi ti verrà chiesto di scriverli uno per volta.`);
 
 // faccio partire un timer per 30 secondi e poi chiedo all'utente di scrivere i numeri esposti prima
+var numeroIndovinati = 0;
+var indovinati = [];
+var numeriInseriti = [];
 var secondi = 30;
+
 var timer = setInterval(function() {
     secondi--
     document.getElementById("timer").innerHTML = secondi;
-    if (secondi == 1) {
+    if (secondi == 0) {
         document.getElementById("timer").innerHTML = "";
         clearInterval(timer);
-}
+
+        for (var c = 0; c < numeriCasuali.length; c++) {
+
+            // pusho in un array i numeri inseriti dall'utente
+            numeriInseriti.push(parseInt(prompt("Inserisci uno ad uno i numeri mostrati precedentemente")));
+
+            // se i numeri inseriti corrispondono a quelli mostrati in precedenza li pusho in un altro array e faccio la conta
+            if (numeriCasuali[c] == numeriInseriti[c]) {
+                indovinati.push(numeriInseriti[c]);
+                numeroIndovinati += 1;
+            }
+        }
+
+        // comunico quanti e quali numeri l'utente ha individuato
+        switch(numeroIndovinati) {
+            case 1:
+                alert(`Hai indovinato solo un numero: ${indovinati}`);
+                break;
+            case 0:
+                alert("Non hai indovinato nessun numero.");
+                break;
+            case 5:
+                alert(`Hai indovinato tutti e ${numeroIndovinati} i numeri: ${indovinati}. Bravo!`);
+                break;
+            default:
+                alert(`Hai indovinato ${numeroIndovinati} numeri: ${indovinati}`);
+        }
+    }
 }, 1000);
 
 
-var numeriInseriti = [];
-var numeroIndovinati = 0;
-var indovinati = [];
 
-setTimeout(function() {
-    for (var c = 0; c < numeriCasuali.length; c++) {
-        // pusho in un array i numeri inseriti dall'utente
-        numeriInseriti.push(parseInt(prompt("Inserisci uno ad uno i numeri mostrati precedentemente")));
 
-        // se i numeri inseriti corrispondono a quelli mostrati in precedenza li pusho in un altro array e faccio la conta
-        if (numeriCasuali[c] == numeriInseriti[c]) {
-            indovinati.push(numeriInseriti[c]);
-            numeroIndovinati += 1;
-        }
-    }
-
-    // comunico quanti e quali numeri l'utente ha individuato
-    switch(numeroIndovinati) {
-        case 1:
-            alert(`Hai indovinato solo un numero: ${indovinati}`);
-            break;
-        case 0:
-            alert("Non hai indovinato nessun numero.");
-            break;
-        case 5:
-            alert(`Hai indovinato tutti e ${numeroIndovinati} i numeri: ${indovinati}. Bravo!`);
-            break;
-        default:
-            alert(`Hai indovinato ${numeroIndovinati} numeri: ${indovinati}`);
-    }
-
-}, 30000
-);
