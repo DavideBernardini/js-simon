@@ -26,7 +26,7 @@ var secondi = 30;
 var timer = setInterval(function() {
     secondi--
     document.getElementById("timer").innerHTML = secondi;
-    if (secondi == 0) {
+    if (secondi == 29) {
         document.getElementById("timer").innerHTML = "";
         clearInterval(timer);
 
@@ -50,7 +50,7 @@ var timer = setInterval(function() {
             case 0:
                 alert("Non hai indovinato nessun numero.");
                 break;
-            case 5:
+            case numeriCasuali.length:
                 alert(`Hai indovinato tutti e ${numeroIndovinati} i numeri: ${indovinati}. Bravo!`);
                 break;
             default:
