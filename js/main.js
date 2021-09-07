@@ -26,7 +26,7 @@ var secondi = 30;
 var timer = setInterval(function() {
     secondi--
     document.getElementById("timer").innerHTML = secondi;
-    if (secondi == 29) {
+    if (secondi == 0) {
         document.getElementById("timer").innerHTML = "";
         clearInterval(timer);
 
